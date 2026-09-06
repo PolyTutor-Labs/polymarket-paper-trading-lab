@@ -1,2 +1,7 @@
-# polymarket-paper-lab
-Polymarket paper trading lab: 100 bots racing with $1,000 each
+# Polymarket Paper Lab
+
+Paper-trading lab racing 100 bots ($1,000 each) across wallet-discovery and proprietary strategies.
+
+## Permanent URL
+
+Deployed on Vercel (see production domain after first deploy).
