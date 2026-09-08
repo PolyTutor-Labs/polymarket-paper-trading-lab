@@ -8,9 +8,11 @@ import {
   STARTING_BANKROLL,
 } from "../types";
 import { ALL_STRATEGIES } from "../strategies/catalog";
+import {
+  getCommittedStateFilePath,
+  getStateFilePath,
+} from "./paths";
 
-const DATA_DIR = path.join(process.cwd(), "data");
-const FILE = path.join(DATA_DIR, "lab-state.json");
 const BLOB_PATHNAME = "lab-state.json";
 
 function emptyBot(strategyId: string): BotState {
@@ -74,7 +76,7 @@ function blobEnabled() {
 }
 
 function localFile() {
-  return process.env.VERCEL ? path.join("/tmp", "lab-state.json") : FILE;
+  return getStateFilePath();
 }
 
 function readFs(): LabState | null {
@@ -84,8 +86,9 @@ function readFs(): LabState | null {
       return normalize(JSON.parse(fs.readFileSync(target, "utf8")) as LabState);
     }
     // Seed from committed snapshot when present (first boot on Vercel).
-    if (process.env.VERCEL && fs.existsSync(FILE)) {
-      return normalize(JSON.parse(fs.readFileSync(FILE, "utf8")) as LabState);
+    const seed = getCommittedStateFilePath();
+    if (process.env.VERCEL && fs.existsSync(seed)) {
+      return normalize(JSON.parse(fs.readFileSync(seed, "utf8")) as LabState);
     }
     return null;
   } catch {
@@ -136,7 +139,7 @@ async function writeBlob(state: LabState) {
 export function readState(): LabState {
   if (process.env.VERCEL) {
     try {
-      const tmp = path.join("/tmp", "lab-state.json");
+      const tmp = getStateFilePath();
       if (fs.existsSync(tmp)) {
         return normalize(JSON.parse(fs.readFileSync(tmp, "utf8")) as LabState);
       }
