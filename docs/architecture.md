@@ -169,7 +169,7 @@ None of these routes implement authentication.
 
 ### Known UI / API contract mismatches
 
-Documented because they affect what learners see. Not fixed in the documentation task.
+Documented because they affect what learners see. These mismatches are known and are not fixed in v0.1.0.
 
 1. **Overview** expects `strategyCount`, `runningCount`, `eligibleCount`, `totalEquity`, `totalPnl`, `totalFees`, `totalRealized`, `totalUnrealized`, `totalTrades`, and `top`. `GET /api/overview` returns `totals` (`equity`, `realizedPnl`, `unrealizedPnl`, `feesPaid`, `netPnl`, `running`) and a slim `bots` array **without** strategy names or a `top` field. Cards can show “—” and the top table can be empty.
 2. **Lab** expects `rows` and `winners`. `GET /api/lab` returns `{ updatedAt, rules, bots }`. The scoreboard can stay empty while state still contains bots. The page falls back to default gate numbers (7 days, 10 trades, 25% DD) when `rules` is missing from that expected shape.

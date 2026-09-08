@@ -1,5 +1,7 @@
 # Polymarket Paper Trading Lab
 
+**Version:** [v0.1.0](CHANGELOG.md)
+
 An educational Polymarket paper trading laboratory for studying strategy evaluation, simulation, and trading system architecture.
 
 This repository is a **learning resource**, not a live trading product. It lets you inspect how a paper desk selects public market data, turns strategy rules into simulated fills, and stores results for review.
@@ -11,9 +13,11 @@ This project is maintained by **PolyTutor Labs** as an educational packaging of 
 PolyTutor work on this repository includes:
 
 - repository organization
+- portability (repository-relative paths)
 - security hardening and a published security audit
 - test and quality-gate stabilization
-- this educational documentation set
+- educational documentation
+- public-release packaging (changelog, license, metadata)
 
 The original application code was not authored from scratch here. See [Attribution](#attribution).
 
@@ -60,7 +64,7 @@ Verified in the current tree:
 - Public Polymarket Data API client (leaderboards and trades)
 - Vitest unit tests, ESLint, TypeScript check, and a Python secret scan
 
-Known UI/API gaps (documented, not changed in this documentation pass) are listed under [Risks and Limitations](#risks-and-limitations).
+Known UI/API gaps (documented, not fixed in v0.1.0) are listed under [Risks and Limitations](#risks-and-limitations).
 
 ## Architecture Overview
 
@@ -93,6 +97,8 @@ Details: [docs/architecture.md](docs/architecture.md).
 ```text
 polymarket-paper-trading-lab/
 ├── README.md
+├── CHANGELOG.md
+├── LICENSE
 ├── CONTRIBUTING.md
 ├── DISCLAIMER.md
 ├── SECURITY.md
@@ -174,6 +180,8 @@ Vitest runs files matching `tests/**/*.test.ts` (catalog, broker, store, paths, 
 | [docs/risk-management.md](docs/risk-management.md) | Implemented controls vs limitations |
 | [SECURITY.md](SECURITY.md) | Secrets policy and reporting |
 | [SECURITY_AUDIT.md](SECURITY_AUDIT.md) | CLEAN malicious-code audit (2026-09-08) |
+| [CHANGELOG.md](CHANGELOG.md) | Version history (v0.1.0) |
+| [LICENSE](LICENSE) | MIT license and attribution |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | What contributions are accepted |
 | [DISCLAIMER.md](DISCLAIMER.md) | Educational-use disclaimer |
 | [docs/specs/2026-09-06-polymarket-paper-lab-design.md](docs/specs/2026-09-06-polymarket-paper-lab-design.md) | Historical design spec |
@@ -186,7 +194,7 @@ Vitest runs files matching `tests/**/*.test.ts` (catalog, broker, store, paths, 
 - **Market and API risk.** Leaderboard and trade fetches can fail, lag, or return incomplete tape. Per-wallet fetches that error are treated as empty lists.
 - **Model assumptions.** Fee category is inferred from market-title keywords. Some catalog params (for example `sizeScale`, `fresh_only`) are stored on strategy definitions but are not consumed by the runner.
 - **Unauthenticated APIs.** Mutating routes (`POST /api/bots`, `POST /api/rules`, GET/POST `/api/tick`) have no auth. Do not expose a public deploy as if it were a locked trading desk. Details: [SECURITY_AUDIT.md](SECURITY_AUDIT.md).
-- **Known dashboard contract mismatches (not fixed in this documentation task):**
+- **Known dashboard contract mismatches (documented, not fixed):**
   - Overview (`/`) expects `/api/overview` fields such as `strategyCount`, `runningCount`, `top`. The route currently returns `{ updatedAt, totals, bots, rules }`. Summary cards and the “Top paper bots” table may stay empty.
   - Lab (`/lab`) expects `{ rows, winners, rules }`. `GET /api/lab` currently returns raw `LabState` (`updatedAt`, `rules`, `bots`). The scoreboard table may stay empty even when bots exist.
 
@@ -214,4 +222,4 @@ Original repository:
 
 https://github.com/ugcrocky-dev/polymarket-paper-lab
 
-PolyTutor Labs contributions are organization, security improvements, testing improvements, and educational documentation. This project does **not** claim ownership of the original application code. Upstream git history is intentionally not retained in this fork packaging.
+PolyTutor Labs contributions are organization, portability, security improvements, testing improvements, educational documentation, and public-release packaging. This project does **not** claim ownership of the original application code. Upstream git history is intentionally not retained in this fork packaging.

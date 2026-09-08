@@ -94,11 +94,11 @@ From `SECURITY_AUDIT.md` (still true in the current routes):
 
 ### Dashboard accuracy
 
-- Overview and Lab pages do not currently consume the same JSON shape their APIs return. Treat Bots / bot detail / Trades / stored JSON as the source of truth for paper results until that contract is aligned (out of scope for this documentation task).
+- Overview and Lab pages do not currently consume the same JSON shape their APIs return. Treat Bots / bot detail / Trades / stored JSON as the source of truth for paper results until that contract is aligned (documented, not fixed in v0.1.0).
 
 ### Lockfile note
 
-`SECURITY_AUDIT.md` records `package.json` requesting `next@^15.5.25` while the lockfile may resolve an older 15.x. That is a dependency-pin issue, not a paper-risk control. Not changed here.
+`SECURITY_AUDIT.md` records `package.json` requesting `next@^15.5.25` while the lockfile may resolve an older 15.x. That is a dependency-pin issue, not a paper-risk control. Dependencies are not upgraded in v0.1.0.
 
 ## Recommended improvements
 

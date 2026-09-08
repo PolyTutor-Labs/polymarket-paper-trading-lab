@@ -22,6 +22,20 @@
 
 # misc
 .DS_Store
+*~
+*.swp
+*.swo
+
+# editor / IDE
+.idea/
+.vscode/
+*.code-workspace
+
+# python (secret-scan script)
+__pycache__/
+*.pyc
+.venv/
+venv/
 
 # credentials / key material (never commit)
 *.pem
