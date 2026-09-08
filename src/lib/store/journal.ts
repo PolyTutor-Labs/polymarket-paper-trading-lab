@@ -1,15 +1,15 @@
 import fs from "fs";
 import path from "path";
 import { PaperFill } from "../types";
-
-const DATA_DIR = path.join(process.cwd(), "data");
-const JOURNAL = path.join(DATA_DIR, "trade-journal.jsonl");
+import { getJournalFilePath } from "./paths";
 
 /** Append-only durable trade log for long-run review (survives fill trim). */
 export function appendTradeJournal(fill: PaperFill) {
   try {
-    if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
-    fs.appendFileSync(JOURNAL, `${JSON.stringify(fill)}\n`);
+    const journal = getJournalFilePath();
+    const dir = path.dirname(journal);
+    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+    fs.appendFileSync(journal, `${JSON.stringify(fill)}\n`);
   } catch (err) {
     console.error("trade journal write failed", err);
   }
@@ -19,9 +19,10 @@ export function readTradeJournal(opts?: {
   botId?: string;
   limit?: number;
 }): PaperFill[] {
-  if (!fs.existsSync(JOURNAL)) return [];
+  const journal = getJournalFilePath();
+  if (!fs.existsSync(journal)) return [];
   const limit = opts?.limit ?? 500;
-  const lines = fs.readFileSync(JOURNAL, "utf8").split("\n").filter(Boolean);
+  const lines = fs.readFileSync(journal, "utf8").split("\n").filter(Boolean);
   const out: PaperFill[] = [];
   for (let i = lines.length - 1; i >= 0 && out.length < limit; i -= 1) {
     try {
