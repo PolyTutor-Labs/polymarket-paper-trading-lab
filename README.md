@@ -28,7 +28,11 @@ PolyTutor Labs work includes repository organization and security audit packagin
 
 ## Security
 
-See `SECURITY_AUDIT.md` (CLEAN malicious-code audit).
+See `SECURITY.md` (repository safeguards) and `SECURITY_AUDIT.md` (CLEAN malicious-code audit).
+
+```bash
+python scripts/security/check_secrets.py
+```
 
 ## Disclaimer
 
