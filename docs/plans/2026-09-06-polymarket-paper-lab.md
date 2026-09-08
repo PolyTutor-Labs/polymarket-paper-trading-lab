@@ -1,6 +1,8 @@
 # Polymarket Paper Lab Implementation Plan
 
-> **For agentic workers:** Implement task-by-task. Checkboxes track progress.
+> Historical implementation notes from 2026-09-06. The paper lab described
+> here was implemented in this repository. The checklist below is the original
+> plan, not a live project board.
 
 **Goal:** Build a phone-friendly dashboard that runs 100 paper strategies ($1000 each) on global Polymarket data and ranks them after ≥7 days.
 

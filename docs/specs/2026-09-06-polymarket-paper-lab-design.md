@@ -1,7 +1,7 @@
 # Polymarket Paper Lab — Design Spec
 
 **Date:** 2026-09-06  
-**Status:** Approved (user: bankroll $1000 each bot, build it)
+**Status:** Historical design (implemented as a paper lab; live execution remains out of scope)
 
 ## Goal
 

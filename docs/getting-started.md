@@ -6,7 +6,7 @@ Run this lab as a **local paper-trading study environment**. You do not need Pol
 
 Verified from `package.json`, Next.js 15 usage, and the secret-scan test:
 
-- **Node.js** compatible with Next.js 15 (the lockfile’s Tailwind Oxide packages declare `node >= 20`; use a current Node 20 LTS if unsure)
+- **Node.js** compatible with Next.js 15 (`package.json` `engines` is `node >= 20`; the lockfile’s Tailwind Oxide packages also declare `node >= 20`)
 - **npm** (lockfile is `package-lock.json`)
 - **Python 3** only if you run `scripts/security/check_secrets.py` (the Vitest secret-scan gate calls `python3`)
 

@@ -1,7 +1,20 @@
 {
-  "name": "polymarket-paper-lab",
+  "name": "polymarket-paper-trading-lab",
   "version": "0.1.0",
   "private": true,
+  "description": "PolyTutor Labs educational Polymarket paper-trading laboratory for studying strategy evaluation, simulation, and trading-system architecture.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PolyTutor-Labs/polymarket-paper-trading-lab.git"
+  },
+  "bugs": {
+    "url": "https://github.com/PolyTutor-Labs/polymarket-paper-trading-lab/issues"
+  },
+  "homepage": "https://github.com/PolyTutor-Labs/polymarket-paper-trading-lab#readme",
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
